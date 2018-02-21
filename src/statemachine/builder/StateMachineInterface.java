@@ -11,7 +11,34 @@ package statemachine.builder;
  */
 public interface StateMachineInterface {
     public void build();
-    public void variable();
-    public void state();
-    public void transition();
+
+    /**
+     * Adds a state in our statemachine representaion
+     * @param name name that identifies state
+     * @return StateMachineBuilder with added statemachine state
+     */
+    public StateMachineBuilder state(String name);
+
+    /**
+     * Adds a transition into our stetmachine representaiton
+     * @param name name that identifies transition
+     * @return StateMachineBuilder with added statemachine transition
+     */
+    public StateMachineBuilder transition(String name);
+    
+    /**
+     * Defines ending state of a transition
+     * @param name name that identifies ending state of transition
+     * @return StateMachineBuilder with added statemachine transition end
+     */
+    public StateMachineBuilder to(String name);
+    
+    /**
+     * Adds an variable in our statemachine representaion
+     * @param name name that identifies variable
+     * @return StateMachineBuilder with added statemachine variable
+     */
+    public StateMachineBuilder variable(String name);
+    public StateMachineBuilder set(String name, int value);
+    
 }

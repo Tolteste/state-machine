@@ -5,10 +5,12 @@
  */
 package statemachine.builder;
 
+import statemachine.model.MachineMetaModel;
+
 /**
  *
  * @author steve
  */
-public class StateMachineBuilder {
-    
+public class StateMachineBuilder implements StateMachineInterface{
+    private MachineMetaModel stateMachine;
 }
