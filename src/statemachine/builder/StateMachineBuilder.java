@@ -6,13 +6,17 @@
 package statemachine.builder;
 
 import statemachine.model.MachineMetaModel;
+import statemachine.model.State;
 
 /**
  *
  * @author steve
  */
-public class StateMachineBuilder implements StateMachineInterface{
+public class StateMachineBuilder implements StateMachineInterface {
+
     private MachineMetaModel stateMachine = new MachineMetaModel();
+
+    private State stateScope;
 
     @Override
     public void build() {
@@ -21,13 +25,14 @@ public class StateMachineBuilder implements StateMachineInterface{
 
     @Override
     public StateMachineBuilder state(String name) {
-        stateMachine.addState(name);
+        stateScope = stateMachine.addState(name);
         return this;
     }
 
     @Override
     public StateMachineBuilder transition(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stateScope.addTransition(name);
+        return this;
     }
 
     @Override
