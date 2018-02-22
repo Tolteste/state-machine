@@ -5,6 +5,8 @@
  */
 package statemachine;
 
+import statemachine.builder.StateMachineBuilder;
+
 /**
  *
  * @author steve
@@ -15,7 +17,7 @@ public class StateMachine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+        StateMachineBuilder builder = new StateMachineBuilder();
+        builder.state("insert coins");//.transition("coin inserted").to("insert coins").build();
+    }   
 }
