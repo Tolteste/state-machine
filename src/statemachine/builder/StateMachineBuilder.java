@@ -37,7 +37,8 @@ public class StateMachineBuilder implements StateMachineInterface{
 
     @Override
     public StateMachineBuilder variable(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        stateMachine.addVariable(name);
+        return this;
     }
 
     @Override

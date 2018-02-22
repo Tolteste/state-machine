@@ -21,4 +21,13 @@ public class MachineMetaModel {
         State state = new State(name);
         states.put(name, state);
     }
+    
+    public void addVariable(String name){
+        Variable variable = new Variable(name);
+        variables.put(name, variable);
+    }
+    
+    public void addTransition(String name){
+        
+    }
 }

@@ -20,4 +20,8 @@ public class State {
     State(String name) {
         this.name = name;
     }
+
+    public void addTransition(String name) {
+        Transition transition = new Transition();
+    }
 }

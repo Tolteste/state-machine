@@ -10,5 +10,8 @@ package statemachine.model;
  * @author steve
  */
 public class Transition {
-    private State toState; 
+    private State toState;
+    
+    public Transition(){
+    };
 }
