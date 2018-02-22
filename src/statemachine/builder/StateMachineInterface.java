@@ -39,6 +39,12 @@ public interface StateMachineInterface {
      * @return StateMachineBuilder with added statemachine variable
      */
     public StateMachineBuilder variable(String name);
-    public StateMachineBuilder set(String name, int value);
     
+    /**
+     * Sets a variable of statemachine to a certain value 
+     * @param name name of a variable that we are setting
+     * @param value 
+     * @return StateMachineBuilder with set variable
+     */
+    public StateMachineBuilder set(String name, int value);
 }
