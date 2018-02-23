@@ -17,12 +17,26 @@ public class MachineMetaModel {
     private final Map<String, State> states = new HashMap<>();
     private final Map<String, Variable> variables = new HashMap<>();
 
+    /**
+     * Adds a new state to a map of all states
+     *
+     * @param name key for a state
+     * @return state with param name
+     */
     public State addState(String name) {
+        if (states.containsKey(name)) {
+            return states.get(name);
+        }
         State state = new State(name);
         states.put(name, state);
         return state;
     }
 
+    /**
+     * Adds a variable into a map of all variables
+     *
+     * @param name key for accessing variable
+     */
     public void addVariable(String name) {
         if (variables.containsKey(name)) {
             throw new Error("State with name " + name + " already exists. Please "
@@ -32,18 +46,7 @@ public class MachineMetaModel {
         variables.put(name, variable);
     }
 
-    public void setToState(String fromStateName, String transitionName, String toStateName) {
-        /*
-        First check if ending state of  transition exists. If not then create a 
-        new one.
-         */
-        State toState = null;
-        if (!states.containsKey(toStateName)) {
-            toState = addState(toStateName);
-        } else {
-            toState = states.get(toStateName);
-        }
-        State fromState = states.get(fromStateName);
-        fromState.setToState(transitionName, toState);
+    public boolean hasState(String name) {
+        return states.containsKey(name);
     }
 }

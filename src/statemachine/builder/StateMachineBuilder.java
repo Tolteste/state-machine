@@ -54,7 +54,13 @@ public class StateMachineBuilder implements StateMachineInterface {
                     + "; Define transition before setting ending state" + name
                     + " of a transition.");
         }
-        stateMachine.setToState(stateScope.getName(),transitionScope.getName(), name);
+        // Checking if ending state exists, if not create a new one
+        State toState = null;
+        if (!stateMachine.hasState(name)) {
+            toState = stateMachine.addState(name);
+        }
+        transitionScope.setToState(toState);
+        //stateMachine.setToState(stateScope.getName(), transitionScope.getName(), name);
         return this;
     }
 

@@ -12,10 +12,11 @@ package statemachine.model;
 public class Transition {
 
     private State toState;
-    private String name;
+    private final String name;
 
     public Transition(String name) {
         this.name = name;
+        this.toState = null;
     };
     
     public void setToState(State state) {

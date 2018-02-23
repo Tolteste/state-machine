@@ -31,9 +31,4 @@ public class State {
         transitions.put(name, transition);
         return transition;
     }
-
-    public void setToState(String transName, State state) {
-        Transition trans = transitions.get(transName);
-        trans.setToState(state);
-    }
 }
