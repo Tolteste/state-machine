@@ -54,7 +54,7 @@ public class StateMachineBuilder implements StateMachineInterface {
                     + "; Define transition before setting ending state" + name
                     + " of a transition.");
         }
-        stateScope.setToState(transitionScope.getName(), name);
+        stateMachine.setToState(stateScope.getName(),transitionScope.getName(), name);
         return this;
     }
 

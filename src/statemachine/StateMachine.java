@@ -18,6 +18,8 @@ public class StateMachine {
      */
     public static void main(String[] args) {
         StateMachineBuilder builder = new StateMachineBuilder();
-        builder.state("insert coins").transition("coin inserted").to("insert coins");
+        builder.state("open")
+                .transition("close_doors").to("close")
+                .state("close").to("open");
     }   
 }

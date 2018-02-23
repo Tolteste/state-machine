@@ -17,6 +17,7 @@ public class State {
     private String name;
     private final Map<String, Transition> transitions = new HashMap<>();
 
+
     State(String name) {
         this.name = name;
     }
@@ -31,7 +32,8 @@ public class State {
         return transition;
     }
 
-    public void setToState(String transName, String stateName) {
-
+    public void setToState(String transName, State state) {
+        Transition trans = transitions.get(transName);
+        trans.setToState(state);
     }
 }
