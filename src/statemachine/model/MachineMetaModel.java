@@ -19,23 +19,20 @@ public class MachineMetaModel {
 
     public State addState(String name) {
         if (states.containsKey(name)) {
-            System.err.println("State with name " + name + " already exists. Please "
+            throw new Error("State with name " + name + " already exists. Please "
                     + "use unique name for a state.");
-            return null;
-        } else {
-            State state = new State(name);
-            states.put(name, state);
-            return state;
         }
+        State state = new State(name);
+        states.put(name, state);
+        return state;
     }
 
     public void addVariable(String name) {
         if (variables.containsKey(name)) {
-            System.err.println("Variable with name " + name + " already exists. Please "
-                    + "use unique name for a variable.");
-        } else {
-            Variable variable = new Variable(name);
-            variables.put(name, variable);
+            throw new Error("State with name " + name + " already exists. Please "
+                    + "use unique name for a state.");
         }
+        Variable variable = new Variable(name);
+        variables.put(name, variable);
     }
 }

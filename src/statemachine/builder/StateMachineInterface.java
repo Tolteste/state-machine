@@ -5,12 +5,14 @@
  */
 package statemachine.builder;
 
+import statemachine.model.MachineMetaModel;
+
 /**
  *
  * @author Bc. Štefan Töltési
  */
 public interface StateMachineInterface {
-    public void build();
+    public MachineMetaModel build();
 
     /**
      * Adds a state in our statemachine representaion

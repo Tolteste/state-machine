@@ -10,8 +10,19 @@ package statemachine.model;
  * @author steve
  */
 public class Transition {
+
     private State toState;
-    
-    public Transition(){
+    private String name;
+
+    public Transition(String name) {
+        this.name = name;
     };
+    
+    public void setToState(State state) {
+        this.toState = state;
+    }
+    
+    public String getName(){
+        return this.name;
+    }
 }

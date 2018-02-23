@@ -7,6 +7,7 @@ package statemachine.builder;
 
 import statemachine.model.MachineMetaModel;
 import statemachine.model.State;
+import statemachine.model.Transition;
 
 /**
  *
@@ -14,30 +15,47 @@ import statemachine.model.State;
  */
 public class StateMachineBuilder implements StateMachineInterface {
 
-    private MachineMetaModel stateMachine = new MachineMetaModel();
+    private final MachineMetaModel stateMachine = new MachineMetaModel();
 
     private State stateScope;
+    private Transition transitionScope;
+
+    public StateMachineBuilder() {
+        this.stateScope = null;
+        this.transitionScope = null;
+    }
 
     @Override
-    public void build() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MachineMetaModel build() {
+        return stateMachine;
     }
 
     @Override
     public StateMachineBuilder state(String name) {
         stateScope = stateMachine.addState(name);
+        transitionScope = null;
         return this;
     }
 
     @Override
     public StateMachineBuilder transition(String name) {
-        stateScope.addTransition(name);
+        transitionScope = stateScope.addTransition(name);
         return this;
     }
 
     @Override
     public StateMachineBuilder to(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.stateScope == null) {
+            throw new Error("First define a state before setting ending "
+                    + "state " + name + " of a transition.");
+        }
+        if (this.transitionScope == null) {
+            throw new Error("In definition of state: " + stateScope.getName()
+                    + "; Define transition before setting ending state" + name
+                    + " of a transition.");
+        }
+        stateScope.setToState(transitionScope.getName(), name);
+        return this;
     }
 
     @Override

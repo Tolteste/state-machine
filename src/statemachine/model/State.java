@@ -5,8 +5,8 @@
  */
 package statemachine.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,13 +15,23 @@ import java.util.Set;
 public class State {
 
     private String name;
-    private final Set<Transition> transitions = new HashSet<>();
+    private final Map<String, Transition> transitions = new HashMap<>();
 
     State(String name) {
         this.name = name;
     }
 
-    public void addTransition(String name) {
-        Transition transition = new Transition();
+    public String getName() {
+        return name;
+    }
+
+    public Transition addTransition(String name) {
+        Transition transition = new Transition(name);
+        transitions.put(name, transition);
+        return transition;
+    }
+
+    public void setToState(String transName, String stateName) {
+
     }
 }

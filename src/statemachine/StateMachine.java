@@ -18,6 +18,6 @@ public class StateMachine {
      */
     public static void main(String[] args) {
         StateMachineBuilder builder = new StateMachineBuilder();
-        builder.state("insert coins").transition("coin inserted");//.to("insert coins").build();
+        builder.state("insert coins").transition("coin inserted").to("insert coins");
     }   
 }
