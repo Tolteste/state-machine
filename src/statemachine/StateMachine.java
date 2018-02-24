@@ -20,6 +20,6 @@ public class StateMachine {
         StateMachineBuilder builder = new StateMachineBuilder();
         builder.state("open")
                 .transition("close_doors").to("close")
-                .state("close").to("open");
+                .state("close").transition("test").to("open").to("tralal");
     }   
 }

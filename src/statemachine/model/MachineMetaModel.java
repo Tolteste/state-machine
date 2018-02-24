@@ -13,7 +13,7 @@ import java.util.Map;
  * @author steve
  */
 public class MachineMetaModel {
-
+    
     private final Map<String, State> states = new HashMap<>();
     private final Map<String, Variable> variables = new HashMap<>();
 
@@ -45,8 +45,12 @@ public class MachineMetaModel {
         Variable variable = new Variable(name);
         variables.put(name, variable);
     }
-
+    
     public boolean hasState(String name) {
         return states.containsKey(name);
+    }
+    
+    public State getState(String name) {
+        return states.get(name);
     }
 }

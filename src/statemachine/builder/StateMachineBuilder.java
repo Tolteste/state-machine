@@ -47,20 +47,21 @@ public class StateMachineBuilder implements StateMachineInterface {
     public StateMachineBuilder to(String name) {
         if (this.stateScope == null) {
             throw new Error("First define a state before setting ending "
-                    + "state " + name + " of a transition.");
+                    + "state \"" + name + "\" of a transition.");
         }
         if (this.transitionScope == null) {
             throw new Error("In definition of state: " + stateScope.getName()
-                    + "; Define transition before setting ending state" + name
-                    + " of a transition.");
+                    + "; Define transition before setting ending state \"" + name
+                    + "\" of a transition.");
         }
         // Checking if ending state exists, if not create a new one
         State toState = null;
         if (!stateMachine.hasState(name)) {
             toState = stateMachine.addState(name);
+        } else {
+            toState = stateMachine.getState(name);
         }
         transitionScope.setToState(toState);
-        //stateMachine.setToState(stateScope.getName(), transitionScope.getName(), name);
         return this;
     }
 
