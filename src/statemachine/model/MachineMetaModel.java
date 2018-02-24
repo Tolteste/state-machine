@@ -13,9 +13,9 @@ import java.util.Map;
  * @author steve
  */
 public class MachineMetaModel {
-    
+
     private final Map<String, State> states = new HashMap<>();
-    private final Map<String, Variable> variables = new HashMap<>();
+    private final Map<String, Integer> variables = new HashMap<>();
 
     /**
      * Adds a new state to a map of all states
@@ -42,15 +42,21 @@ public class MachineMetaModel {
             throw new Error("State with name " + name + " already exists. Please "
                     + "use unique name for a state.");
         }
-        Variable variable = new Variable(name);
-        variables.put(name, variable);
+        variables.put(name, 0);
     }
-    
+
     public boolean hasState(String name) {
         return states.containsKey(name);
     }
-    
+
     public State getState(String name) {
         return states.get(name);
+    }
+
+    public void setVariable(String name, int value) {
+        if (!variables.containsKey(name)) {
+            throw new Error("You are trying to set undeclared variable: \"" + name + "\"");
+        }
+        variables.put(name, value);
     }
 }
