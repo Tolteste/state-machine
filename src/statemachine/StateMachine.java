@@ -6,6 +6,7 @@
 package statemachine;
 
 import statemachine.builder.StateMachineBuilder;
+import statemachine.model.ComparisonOperator;
 
 /**
  *
@@ -20,7 +21,7 @@ public class StateMachine {
         StateMachineBuilder builder = new StateMachineBuilder();
         builder.variable("kokot", 0).variable("pica", 2)
                 .state("open")
-                    .transition("close_doors").to("close").increment("kokot")
+                    .transition("close_doors").to("close").increment("kokot").when("kokot", ComparisonOperator.EQUAL_TO, "pica")
                 .state("close").transition("test").to("open").add("kokot","pica");
     }   
 }

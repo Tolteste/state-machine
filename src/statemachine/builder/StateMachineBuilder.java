@@ -5,6 +5,7 @@
  */
 package statemachine.builder;
 
+import statemachine.model.ComparisonOperator;
 import statemachine.model.MachineMetaModel;
 import statemachine.model.Operation;
 import statemachine.model.State;
@@ -21,9 +22,12 @@ public class StateMachineBuilder implements StateMachineInterface {
     private State stateScope;
     private Transition transitionScope;
 
+    private boolean flagToStateSet;
+
     public StateMachineBuilder() {
         this.stateScope = null;
         this.transitionScope = null;
+        this.flagToStateSet = true;
     }
 
     @Override
@@ -33,6 +37,10 @@ public class StateMachineBuilder implements StateMachineInterface {
 
     @Override
     public StateMachineBuilder state(String name) {
+        if (flagToStateSet == false) {
+            throw new Error("Transition \"" + transitionScope.getName() + "\" doesn't have "
+                    + "ending state. Set it by using \"to()\" method.");
+        }
         stateScope = stateMachine.addState(name);
         transitionScope = null;
         return this;
@@ -40,7 +48,12 @@ public class StateMachineBuilder implements StateMachineInterface {
 
     @Override
     public StateMachineBuilder transition(String name) {
+        if (flagToStateSet == false) {
+            throw new Error("Transition \"" + transitionScope.getName() + "\" doesn't have "
+                    + "ending state. Set it by using \"to()\" method.");
+        }
         transitionScope = stateScope.addTransition(name);
+        flagToStateSet = false;
         return this;
     }
 
@@ -63,6 +76,7 @@ public class StateMachineBuilder implements StateMachineInterface {
             toState = stateMachine.getState(name);
         }
         transitionScope.setToState(toState);
+        flagToStateSet = true;
         return this;
     }
 
@@ -111,6 +125,18 @@ public class StateMachineBuilder implements StateMachineInterface {
     @Override
     public StateMachineBuilder variable(String name, int value) {
         stateMachine.addVariable(name, value);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, String rightVariable) {
+        transitionScope.setCondition(leftVariable, operator, rightVariable);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, int rightOperand) {
+        transitionScope.setCondition(leftVariable, operator, rightOperand);
         return this;
     }
 }

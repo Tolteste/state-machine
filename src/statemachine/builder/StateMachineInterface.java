@@ -5,6 +5,7 @@
  */
 package statemachine.builder;
 
+import statemachine.model.ComparisonOperator;
 import statemachine.model.MachineMetaModel;
 
 /**
@@ -87,4 +88,8 @@ public interface StateMachineInterface {
     public StateMachineBuilder subtract(String variableName, String subtrahend);
 
     public StateMachineBuilder subtract(String variableName, int subtrahend);
+
+    public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, String rightVariable);
+
+    public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, int rightOperand);
 }
