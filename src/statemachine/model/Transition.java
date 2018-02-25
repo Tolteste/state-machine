@@ -13,17 +13,22 @@ public class Transition {
 
     private State toState;
     private final String name;
+    private Effect effect;
 
     public Transition(String name) {
         this.name = name;
         this.toState = null;
-    };
+    }
     
     public void setToState(State state) {
         this.toState = state;
     }
-    
-    public String getName(){
+
+    public String getName() {
         return this.name;
+    }
+
+    public void setEffect(String variableName, Operation operation, Object operand) {
+        this.effect = new Effect(name, operation, operand);
     }
 }

@@ -6,6 +6,7 @@
 package statemachine.builder;
 
 import statemachine.model.MachineMetaModel;
+import statemachine.model.Operation;
 import statemachine.model.State;
 import statemachine.model.Transition;
 
@@ -66,14 +67,50 @@ public class StateMachineBuilder implements StateMachineInterface {
     }
 
     @Override
-    public StateMachineBuilder variable(String name) {
-        stateMachine.addVariable(name);
+    public StateMachineBuilder set(String name, int value) {
+        transitionScope.setEffect(name, Operation.SET, value);
         return this;
     }
 
     @Override
-    public StateMachineBuilder set(String name, int value) {
-        stateMachine.setVariable(name, value);
+    public StateMachineBuilder increment(String variableName) {
+        transitionScope.setEffect(variableName, Operation.ADD, 1);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder decrement(String variableName) {
+        transitionScope.setEffect(variableName, Operation.SUBTRACT, 1);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder subtract(String variableName, String subtrahend) {
+        transitionScope.setEffect(variableName, Operation.SUBTRACT, subtrahend);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder subtract(String variableName, int subtrahend) {
+        transitionScope.setEffect(variableName, Operation.SUBTRACT, subtrahend);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder add(String variableName, String addend) {
+        transitionScope.setEffect(variableName, Operation.ADD, addend);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder add(String variableName, int addend) {
+        transitionScope.setEffect(variableName, Operation.ADD, addend);
+        return this;
+    }
+
+    @Override
+    public StateMachineBuilder variable(String name, int value) {
+        stateMachine.addVariable(name, value);
         return this;
     }
 }

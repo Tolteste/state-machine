@@ -15,7 +15,7 @@ import java.util.Map;
 public class MachineMetaModel {
 
     private final Map<String, State> states = new HashMap<>();
-    private final Map<String, Integer> variables = new HashMap<>();
+    private final Map<String, Integer> variablesInitial = new HashMap<>();
 
     /**
      * Adds a new state to a map of all states
@@ -36,13 +36,14 @@ public class MachineMetaModel {
      * Adds a variable into a map of all variables
      *
      * @param name key for accessing variable
+     * @param value default value for variable
      */
-    public void addVariable(String name) {
-        if (variables.containsKey(name)) {
+    public void addVariable(String name, int value) {
+        if (variablesInitial.containsKey(name)) {
             throw new Error("State with name " + name + " already exists. Please "
                     + "use unique name for a state.");
         }
-        variables.put(name, 0);
+        variablesInitial.put(name, value);
     }
 
     public boolean hasState(String name) {
@@ -51,12 +52,5 @@ public class MachineMetaModel {
 
     public State getState(String name) {
         return states.get(name);
-    }
-
-    public void setVariable(String name, int value) {
-        if (!variables.containsKey(name)) {
-            throw new Error("You are trying to set undeclared variable: \"" + name + "\"");
-        }
-        variables.put(name, value);
     }
 }

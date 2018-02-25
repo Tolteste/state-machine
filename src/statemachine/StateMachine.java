@@ -18,8 +18,9 @@ public class StateMachine {
      */
     public static void main(String[] args) {
         StateMachineBuilder builder = new StateMachineBuilder();
-        builder.state("open")
-                .transition("close_doors").to("close")
-                .state("close").transition("test").to("open").to("tralal");
+        builder.variable("kokot", 0).variable("pica", 2)
+                .state("open")
+                    .transition("close_doors").to("close").increment("kokot")
+                .state("close").transition("test").to("open").add("kokot","pica");
     }   
 }
