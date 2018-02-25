@@ -83,13 +83,57 @@ public interface StateMachineInterface {
      */
     public StateMachineBuilder add(String variableName, String addend);
 
+    /**
+     * Adds addend (int value) to a variable specified by variableName
+     *
+     * @param variableName
+     * @param addend
+     * @return StateMachineBuilder
+     */
     public StateMachineBuilder add(String variableName, int addend);
 
+    /**
+     * Subtracts subtrahend (variable) from a variable specified by variableName
+     *
+     * @param variableName
+     * @param subtrahend
+     * @return StateMachineBuilder
+     */
     public StateMachineBuilder subtract(String variableName, String subtrahend);
 
+    /**
+     * Subtracts subtrahend (int value) from a variable specified by
+     * variableName
+     *
+     * @param variableName
+     * @param subtrahend
+     * @return StateMachineBuilder
+     */
     public StateMachineBuilder subtract(String variableName, int subtrahend);
 
+    /**
+     * Sets an condition to a transition
+     *
+     * @param leftVariable name of a variable that is on the left side of
+     * equation
+     * @param operator enum of available comparison operators for transition
+     * condition
+     * @param rightVariable name of a variable that is on the right side of
+     * equation
+     * @return StateMachineBuilder
+     */
     public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, String rightVariable);
 
+    /**
+     * Sets an condition to a transition
+     *
+     * @param leftVariable name of a variable that is on the left side of
+     * equation
+     * @param operator enum of available comparison operators for transition
+     * condition
+     * @param rightOperand int value that the variable on the left side of
+     * equation is compared to
+     * @return StateMachineBuilder
+     */
     public StateMachineBuilder when(String leftVariable, ComparisonOperator operator, int rightOperand);
 }

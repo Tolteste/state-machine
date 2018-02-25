@@ -11,9 +11,9 @@ package statemachine.model;
  */
 class Effect {
 
-    private String affectedVariable;
-    private Operation operation;
-    private Object operandRight;
+    private final String affectedVariable;
+    private final Operation operation;
+    private final Object operandRight;
 
     public Effect(String affectedVariable, Operation operation, Object operandRight) {
         this.affectedVariable = affectedVariable;
