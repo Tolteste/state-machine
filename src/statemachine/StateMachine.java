@@ -19,9 +19,9 @@ public class StateMachine {
      */
     public static void main(String[] args) {
         StateMachineBuilder builder = new StateMachineBuilder();
-        builder.variable("kokot", 0).variable("pica", 2)
+        builder.variable("v", 0).variable("v2", 2)
                 .state("open")
-                    .transition("close_doors").to("close").increment("kokot").when("kokot", ComparisonOperator.EQUAL_TO, "pica")
-                .state("close").transition("test").to("open").add("kokot","pica");
+                    .transition("close_doors").to("close").increment("v").when("v", ComparisonOperator.EQUAL_TO, "v2")
+                .state("close").transition("test").to("open").add("v","v2");
     }   
 }
